@@ -8,13 +8,9 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "Products": {
       "type": "relation",
@@ -26,6 +22,11 @@
       "relation": "manyToOne",
       "target": "api::order.order",
       "inversedBy": "OrderProducts"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

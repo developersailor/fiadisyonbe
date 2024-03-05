@@ -1,5 +1,5 @@
 {
-  "/orders": {
+  "/upload/files": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderListResponse"
+                "$ref": "#/components/schemas/UploadFileListResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Order"
+        "Upload - File"
       ],
       "parameters": [
         {
@@ -169,89 +169,10 @@
           }
         }
       ],
-      "operationId": "get/orders"
-    },
-    "post": {
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "403": {
-          "description": "Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        }
-      },
-      "tags": [
-        "Order"
-      ],
-      "parameters": [],
-      "operationId": "post/orders",
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/OrderRequest"
-            }
-          }
-        }
-      }
+      "operationId": "get/upload/files"
     }
   },
-  "/orders/{id}": {
+  "/upload/files/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -259,7 +180,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderResponse"
+                "$ref": "#/components/schemas/UploadFileResponse"
               }
             }
           }
@@ -316,7 +237,7 @@
         }
       },
       "tags": [
-        "Order"
+        "Upload - File"
       ],
       "parameters": [
         {
@@ -330,97 +251,7 @@
           }
         }
       ],
-      "operationId": "get/orders/{id}"
-    },
-    "put": {
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "403": {
-          "description": "Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        }
-      },
-      "tags": [
-        "Order"
-      ],
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "description": "",
-          "deprecated": false,
-          "required": true,
-          "schema": {
-            "type": "number"
-          }
-        }
-      ],
-      "operationId": "put/orders/{id}",
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/OrderRequest"
-            }
-          }
-        }
-      }
+      "operationId": "get/upload/files/{id}"
     },
     "delete": {
       "responses": {
@@ -487,7 +318,7 @@
         }
       },
       "tags": [
-        "Order"
+        "Upload - File"
       ],
       "parameters": [
         {
@@ -501,7 +332,7 @@
           }
         }
       ],
-      "operationId": "delete/orders/{id}"
+      "operationId": "delete/upload/files/{id}"
     }
   }
 }

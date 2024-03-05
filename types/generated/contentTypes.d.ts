@@ -777,12 +777,7 @@ export interface ApiBillBill extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: false;
   };
   attributes: {
     OrderId: Attribute.Relation<
@@ -790,61 +785,23 @@ export interface ApiBillBill extends Schema.CollectionType {
       'oneToOne',
       'api::order.order'
     >;
-    CustomerName: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    TableNumber: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    BillDate: Attribute.Date &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    BillTime: Attribute.Time &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    TotalAmount: Attribute.Decimal &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    PaymentManagement: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    CustomerName: Attribute.String & Attribute.Required;
+    TableNumber: Attribute.Integer & Attribute.Required;
+    BillDate: Attribute.Date & Attribute.Required;
+    BillTime: Attribute.Time & Attribute.Required;
+    TotalAmount: Attribute.Decimal & Attribute.Required;
+    PaymentManagement: Attribute.String & Attribute.Required;
+    users_permissions_user: Attribute.Relation<
+      'api::bill.bill',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::bill.bill', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::bill.bill', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::bill.bill',
-      'oneToMany',
-      'api::bill.bill'
-    >;
-    locale: Attribute.String;
   };
 }
 
@@ -857,49 +814,14 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: false;
   };
   attributes: {
-    CostumerName: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    TableNumber: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    OrderDate: Attribute.Date &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    OrderTime: Attribute.Time &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    TotalAmount: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    CostumerName: Attribute.String & Attribute.Required;
+    TableNumber: Attribute.Integer & Attribute.Required;
+    OrderDate: Attribute.Date & Attribute.Required;
+    OrderTime: Attribute.Time & Attribute.Required;
+    TotalAmount: Attribute.Integer & Attribute.Required;
     OrderProducts: Attribute.Relation<
       'api::order.order',
       'oneToMany',
@@ -911,9 +833,13 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'oneToOne',
       'api::table.table'
     >;
+    users_permissions_user: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::order.order',
       'oneToOne',
@@ -926,12 +852,6 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::order.order',
-      'oneToMany',
-      'api::order.order'
-    >;
-    locale: Attribute.String;
   };
 }
 
@@ -944,12 +864,7 @@ export interface ApiOrderProductOrderProduct extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: false;
   };
   attributes: {
     Products: Attribute.Relation<
@@ -962,9 +877,13 @@ export interface ApiOrderProductOrderProduct extends Schema.CollectionType {
       'manyToOne',
       'api::order.order'
     >;
+    users_permissions_user: Attribute.Relation<
+      'api::order-product.order-product',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::order-product.order-product',
       'oneToOne',
@@ -977,12 +896,6 @@ export interface ApiOrderProductOrderProduct extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::order-product.order-product',
-      'oneToMany',
-      'api::order-product.order-product'
-    >;
-    locale: Attribute.String;
   };
 }
 
@@ -995,7 +908,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -1046,9 +959,13 @@ export interface ApiProductProduct extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    users_permissions_user: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::product.product',
       'oneToOne',
@@ -1079,46 +996,26 @@ export interface ApiTableTable extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: false;
   };
   attributes: {
-    TableCapacity: Attribute.Integer &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    TableName: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    TableCapacity: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    TableName: Attribute.String & Attribute.Required & Attribute.Unique;
     TableStatus: Attribute.Boolean &
       Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
       Attribute.DefaultTo<false>;
     order: Attribute.Relation<
       'api::table.table',
       'oneToOne',
       'api::order.order'
     >;
+    users_permissions_user: Attribute.Relation<
+      'api::table.table',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::table.table',
       'oneToOne',
@@ -1131,12 +1028,6 @@ export interface ApiTableTable extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::table.table',
-      'oneToMany',
-      'api::table.table'
-    >;
-    locale: Attribute.String;
   };
 }
 
